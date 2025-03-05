@@ -24,9 +24,9 @@ const port = process.env.PORT;
 router(app);
 routeradmin(app);
 app.set('view engine', 'pug');
-app.set('views', './views'); // Thư mục chứa các file Pug
+app.set('views', `${__dirname}/views`); // Thư mục chứa các file Pug
 
-app.use(express.static("public"));
+app.use(express.static(`${__dirname}/public`));
 app.listen(port, () => {
   console.log(`Server chạy tại http://localhost:${port}`);
 });
