@@ -1,0 +1,124 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block main
+    +alert-error(5000)
+    +alert-success(5000)
+    .container.mt-4
+        .card.shadow-lg.border-0.rounded-4.overflow-hidden
+            .card-header.bg-gradient-primary.text-white.py-3.text-center
+                h2.mb-0.fs-4(style="color: black;") Chỉnh sửa sản phẩm
+            .card-body.p-4
+                form(
+                    action=`${prefixAdmin}/products/edit/${product.id}?_method=patch`
+                    id="form-edit-product"
+                    method="POST"
+                    enctype="multipart/form-data"
+                )
+                    .mb-4
+                        label(for="title" class="form-label fw-bold text-primary") Tiêu đề
+                        input(
+                            type="text"
+                            class="form-control border-primary rounded-pill py-2 px-3"
+                            id="title"
+                            name="title"
+                            required
+                            value=product.title
+                        )
+                    .mb-4
+                        label(for="desc" class="form-label fw-bold text-primary") Mô tả
+                        textarea(
+                            class="form-control border-primary rounded-3 py-2 px-3"
+                            id="desc"
+                            name="description"
+                            rows="5"
+                            value=product.description
+                        ) #{product.description}
+                    .row.g-3
+                        .col-md-6
+                            label(for="price" class="form-label fw-bold text-primary") Giá
+                            input(
+                                type="number"
+                                class="form-control border-primary rounded-pill py-2 px-3"
+                                id="price"
+                                name="price"
+                                value=product.price
+                                min="0"
+                            )
+                        .col-md-6
+                            label(for="discount" class="form-label fw-bold text-primary") % Giảm giá
+                            input(
+                                type="number"
+                                class="form-control border-primary rounded-pill py-2 px-3"
+                                id="discount"
+                                name="discountPercentage"
+                                value=product.discountPercentage
+                                min="0"
+                            )
+                    .mb-4
+                        label(for="stock" class="form-label fw-bold text-primary") Số lượng
+                        input(
+                            type="number"
+                            class="form-control border-primary rounded-pill py-2 px-3"
+                            id="stock"
+                            name="stock"
+                            value=product.stock
+                            min="0"
+                        )
+                    .mb-4
+                        label(for="thumbnail" class="form-label fw-bold text-primary") Ảnh
+                        input(
+                            type="file"
+                            class="form-control border-primary rounded-pill py-2 px-3"
+                            id="thumbnail"
+                            name="thumbnail"
+                            accept="image/*"
+                        )
+                        .text-center.mt-3
+                            img(
+                                src=product.thumbnail || ""
+                                class="img-thumbnail shadow-sm rounded-3 #{!product?.thumbnail ? 'd-none' : ''}"
+                                id="image-preview"
+                                style="max-width: 200px;"
+                            )
+
+                    .mb-4
+                        label(for="position" class="form-label fw-bold text-primary") Vị trí
+                        input(
+                            type="number"
+                            class="form-control border-primary rounded-pill py-2 px-3"
+                            id="position"
+                            name="position"
+                            placeholder="Tự động tăng"
+                            min="1"
+                            value=product.position
+                        )
+                    .mb-4
+                        label(class="fw-bold text-primary") Trạng thái
+                        .d-flex.gap-3
+                            .form-check
+                                input(
+                                    type="radio"
+                                    class="form-check-input"
+                                    id="statusActive"
+                                    name="status"
+                                    value="active"
+                                    checked=(product.status=="active"? true : false)
+                                )
+                                label(for="statusActive" class="form-check-label text-dark") Hoạt động
+                            .form-check
+                                input(
+                                    type="radio"
+                                    class="form-check-input"
+                                    id="statusInactive"
+                                    name="status"
+                                    value="inactive"
+                                    checked=(product.status=="inactive"? true : false)
+                                )
+                                
+                                label(for="statusInactive" class="form-check-label text-dark") Dừng hoạt động
+                    .text-center.mt-4
+                        button(
+                            type="submit"
+                            class="btn btn-success px-5 py-2 rounded-pill fw-bold text-white shadow-sm"
+                        ) Cập nhật
+    script(src="/admin/js/product.js")

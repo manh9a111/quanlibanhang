@@ -1,0 +1,127 @@
+//- extends ../layouts/default.pug 
+extends ../../layouts/default.pug
+include ../../mixins/filterstatus.pug
+include ../../mixins/pagination.pug
+include ../../mixins/changeMulti.pug
+include ../../mixins/alert.pug
+block main 
+    +alert-success("5000")
+           
+
+    h1 Danh sách sản phẩm
+    .card.mb-3 
+        .card-header Bộ lọc và Tìm kiếm
+        .card-body 
+            .row 
+                .col-6
+                    +filter-status(filterstatus)
+                .col-6
+                    form(id="form-search")
+                        .input-group 
+                            input(type="text"
+                                placeholder="Nhập từ khoá"
+                                name="keyword"
+                                class="form-control"
+                                value=keyword )
+                            .input-group-append    
+                                button(class="btn btn-success"
+                                type="submit"
+                                ) Tìm                       
+    .card.mb-3 
+        .card-header Danh sách
+            .card-body
+                .row
+                    .col-8
+                        +changeMulti(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+                    .col-4
+                        a(
+                            href=`${prefixAdmin}/products/create`
+                            class="btn btn-outline-success"
+                        ) + Thêm mới
+
+                table(
+                    class="table table-hover table-sm"
+                    checkbox-multi
+                )
+                    thead 
+                        tr  
+                            th 
+                                input(type="checkbox" name="checkall")
+                            th STT
+                            th Hình ảnh 
+                            th Tiêu đề
+                            th Giá
+                            th Vị trí
+                            th Trạng thái
+                            th Hành động
+                    tbody 
+                        each item,index in products
+                            tr 
+                                td 
+                                    input(type="checkbox"
+                                    name="id"
+                                    value=item.id
+                                    )
+                                td #{index +1 }
+                                td 
+                                    img(src=item.thumbnail
+                                    
+                                    width="100px"
+                                    height="auto")
+                                td #{item.title}
+                                td #{item.price}$
+                                td
+                                    input(
+                                        type="number"
+                                        value=item.position
+                                        style="width: 60px"
+                                        min="1"
+                                        name="position"
+                                    )
+
+                                td 
+                                    if(item.status == "active")
+                                        a(href="javascript:;"
+                                        button-change-status
+                                        data-status="active"
+                                        data-id=item.id
+                                        class="badge bg-success") Hoạt động
+                                    else 
+                                        a(href="javascript:;"
+                                        button-change-status
+                                        data-status="inactive"
+                                        data-id=item.id
+                                        class="badge bg-danger") Dừng hoạt động
+                                td  
+                                    a(href=`${prefixAdmin}/products/detail/${item.id}` class="btn btn-secondary btn-sm") Chi tiết
+                                    a(href=`${prefixAdmin}/products/edit/${item.id}` class="btn btn-warning btn-sm") Sửa
+                                    button(class="btn btn-danger btn-sm ml-1"
+                                    button-delete
+                                    data-id = item.id
+                                    ) Xoá
+                //- tr 
+                //- td 2
+                //- td 
+                //-     img(src="https://hoanghamobile.com/Uploads/2023/09/13/iphone-15-pro-max-natural-titanium-pure-back-iphone-15-pro-max-natural-titanium-pure-front-2up-screen-usen-1.png", alt="15 pro max"
+                //-     width="100px"
+                //-     height="auto")
+                //- td Sản phẩm 1
+                //- td 100$
+                //- td 
+                //-     a(href="#" class="badge bg-danger") Dừng hoạt động
+                //- td 
+                //-     button(class="btn btn-warning btn-sm") Sửa
+    +pagination(pagination)
+    form(
+        action=""
+        method="POST"
+        id="form-change-status"
+        data-path = `${prefixAdmin}/products/change-status`
+    )
+    form(
+        action=""
+        method="POST"
+        id="form-delete-item"
+        data-path = `${prefixAdmin}/products/delete`
+    )  
+    script(src="/admin/js/product.js")

@@ -1,0 +1,313 @@
+/* Đặt body không có margin để tránh bị lệch */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Định nghĩa cho header (fixed header) */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #343a40;
+    color: white;
+    padding: 15px 20px;
+    z-index: 200; /* Đảm bảo header luôn nằm trên cùng */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng cho header */
+    height: 70px; /* Đảm bảo header có chiều cao cố định */
+  }
+  
+  /* Đặt style cho logo trong header */
+  .inner-logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff; /* Màu chữ cho logo */
+    text-decoration: none; /* Loại bỏ gạch dưới của link */
+    padding-left: 20px; /* Căn lề trái cho logo */
+  }
+  
+  /* Đổi màu khi hover vào link logo */
+  .inner-logo a:hover {
+    color: #f8f9fa; /* Màu sáng khi hover */
+    text-decoration: none; /* Loại bỏ gạch dưới khi hover */
+  }
+  
+  /* Đảm bảo các phần tử trong header căn đều */
+  .row.align-items-center {
+    display: flex;
+    justify-content: space-between; /* Căn đều không gian giữa các phần tử */
+    align-items: center; /* Căn giữa theo chiều dọc */
+  }
+  
+  /* Định nghĩa cho sidebar */
+  .sidebar {
+    position: fixed;
+    top: 70px; /* Đẩy sidebar xuống dưới header để không bị che */
+    left: 0;
+    width: 250px; /* Chiều rộng của sidebar */
+    height: calc(100vh - 70px); /* Chiều cao sidebar bằng chiều cao màn hình trừ đi header */
+    background-color: #343a40;
+    color: white;
+    padding-top: 20px;
+    z-index: 100; /* Sidebar nằm dưới header */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+    overflow-y: auto; /* Cho phép cuộn nếu nội dung dài */
+    padding-left: 20px; /* Thêm khoảng cách từ lề trái */
+  }
+  
+  /* Các mục trong sidebar */
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Định dạng cho các mục menu trong sidebar */
+  .sidebar ul li {
+    padding: 12px 20px;
+    border-bottom: 1px solid #474f54;
+  }
+  
+  /* Định dạng cho các liên kết trong menu */
+  .sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    display: block;
+    transition: background-color 0.3s ease; /* Thêm hiệu ứng chuyển màu khi hover */
+  }
+  
+  /* Màu sắc khi hover vào liên kết trong sidebar */
+  .sidebar ul li a:hover {
+    background-color: #007bff; /* Màu nền khi hover */
+    color: white; /* Màu chữ khi hover */
+  }
+  
+  /* Phần nội dung chính */
+  .main {
+    margin-left: 250px; /* Đẩy nội dung chính ra bên phải sidebar */
+    margin-top: 70px; /* Đẩy nội dung chính xuống dưới header */
+    padding: 20px;
+  }
+  
+  /* Responsive: Với màn hình nhỏ, sidebar sẽ thu hẹp */
+  @media screen and (max-width: 768px) {
+    .sidebar {
+      width: 200px; /* Thu hẹp sidebar trên màn hình nhỏ */
+    }
+  
+    .main {
+      margin-left: 0; /* Đẩy nội dung chính ra đầy đủ màn hình */
+    }
+  }
+  /* Đặt body không có margin để tránh bị lệch */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa; /* Màu nền nhẹ cho body */
+  }
+  
+  /* Định nghĩa cho header */
+  header.header {
+    background-color: #343a40; /* Màu nền tối cho header */
+    color: white; /* Màu chữ trắng */
+    padding: 15px 20px; /* Padding cho header */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Chiều rộng đầy đủ */
+    z-index: 200; /* Đảm bảo header luôn nằm trên cùng */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng cho header */
+    display: flex;
+    justify-content: space-between; /* Căn đều các phần tử bên trong */
+    align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+    height: 80px; /* Chiều cao cố định cho header */
+    transition: all 0.3s ease; /* Hiệu ứng mượt mà khi chuyển đổi */
+  }
+  
+  /* Đổi hiệu ứng đổ bóng khi hover vào header */
+  header.header:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Tăng độ bóng khi hover */
+  }
+  
+  /* Định dạng cho logo */
+  .inner-logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-decoration: none; /* Loại bỏ gạch dưới cho link */
+  }
+  
+  .inner-logo a {
+    color: #ffffff; /* Màu chữ cho logo */
+    text-decoration: none;
+  }
+  
+  .inner-logo a:hover {
+    color: #f8f9fa; /* Thay đổi màu khi hover */
+    text-decoration: underline; /* Thêm gạch dưới khi hover */
+  }
+  
+  /* Định dạng cho menu trong header */
+  .inner-menu {
+    display: flex;
+    justify-content: flex-end; /* Các menu item căn phải */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .inner-menu li {
+    margin-left: 30px; /* Khoảng cách giữa các item trong menu */
+  }
+  
+  .inner-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    padding: 8px 12px; /* Thêm khoảng cách xung quanh các item */
+    border-radius: 4px; /* Bo góc cho các item */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Thêm hiệu ứng mượt mà */
+  }
+  
+  .inner-menu a:hover {
+    background-color: #007bff; /* Màu nền khi hover */
+    color: white; /* Màu chữ khi hover */
+    border-radius: 8px; /* Bo góc mạnh hơn khi hover */
+  }
+  
+  /* Đảm bảo .inner-image có kích thước linh hoạt */
+  .inner-image {
+    width: 100%;
+    height: auto;
+    overflow: hidden; /* Cắt bớt phần ngoài nếu có */
+    border-radius: 8px; /* Bo góc cho ảnh */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng cho ảnh */
+  }
+  
+  /* Đảm bảo ảnh hiển thị đầy đủ và giữ tỷ lệ */
+  .inner-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Đảm bảo hình ảnh không bị méo và hiển thị đầy đủ */
+    border-radius: 8px; /* Bo góc cho ảnh */
+  }
+  
+  /* Cải thiện giao diện của sản phẩm */
+  .product-item {
+    display: flex;
+    flex-direction: column; /* Để các phần tử con xếp theo chiều dọc */
+    align-items: center; /* Canh giữa các phần tử trong .product-item */
+    justify-content: flex-start;
+    text-align: center; /* Đảm bảo các nội dung bên trong sản phẩm canh giữa */
+    background-color: #ffffff; /* Màu nền sản phẩm */
+    border-radius: 8px; /* Bo góc cho sản phẩm */
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ cho sản phẩm */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Thêm hiệu ứng */
+  }
+  
+  .product-item:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Tăng độ bóng khi hover */
+    transform: translateY(-5px); /* Đẩy sản phẩm lên một chút khi hover */
+  }
+  
+  .inner-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .inner-price-new {
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .inner-price-old {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 14px;
+  }
+  
+  .inner-discount {
+    color: green;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  /* Responsive: Với màn hình nhỏ, sẽ đổi bố cục */
+  @media screen and (max-width: 768px) {
+    header.header {
+      flex-direction: column; /* Chuyển từ layout ngang sang dọc */
+      text-align: center; /* Căn giữa nội dung header */
+      height: auto; /* Điều chỉnh chiều cao header trên màn hình nhỏ */
+    }
+  
+    .inner-menu {
+      flex-direction: column; /* Sắp xếp menu theo chiều dọc trên màn hình nhỏ */
+      margin-top: 20px; /* Khoảng cách giữa logo và menu */
+    }
+  
+    .inner-menu li {
+      margin-left: 0; /* Loại bỏ margin bên trái của các item */
+      margin-bottom: 10px; /* Thêm khoảng cách dưới mỗi item */
+    }
+  
+    .product-item {
+      width: 100%; /* Đảm bảo sản phẩm chiếm toàn bộ chiều rộng trên màn hình nhỏ */
+      margin-bottom: 20px; /* Thêm khoảng cách dưới sản phẩm */
+    }
+  }
+  [show-alert] {
+    position: fixed;
+    top: 70px;
+    right: 15px;
+    z-index: 9999;
+}
+
+[show-alert].alert-hidden {
+    animation-name: alert-hidden;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes alert-hidden {
+    from {
+        right: 15px;
+    }
+    to {
+        right: -100%;
+        display: none;
+    }
+}
+[show-alert] [close-alert] {
+  background: #ffffffc4;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* Image Preview */
+.image-preview {
+  width: 150px;
+  height: auto;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.image-preview[src=""] {
+  display: none;
+}
