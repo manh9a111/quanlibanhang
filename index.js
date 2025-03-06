@@ -15,7 +15,14 @@ require('dotenv').config();
 const router = require('./routes/client/index-routes'); 
 const routeradmin = require('./routes/admin/index.route');
 app.use(cookieParser('keyboardcatgdsfgdf'));
-app.use(session({ cookie: { maxAge: 60000 }}));
+app.use(session({
+  secret: process.env.SECRET_KEY,  // Lấy từ biến môi trường
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 },
+  store: new session.MemoryStore()
+}));
+
 app.use(flash());
 // mongoose.connect(process.env.Mongo_url);
 app.locals.prefixAdmin = system.prefixAdmin;
