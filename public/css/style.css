@@ -1,22 +1,25 @@
-/* Body */
+/* Cải tiến chung cho body */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f8f9fa; /* Màu nền nhẹ cho trang */
+  background-color: #f8f9fa;
   margin: 0;
   padding: 0;
 }
 
 /* Cải tiến cho tiêu đề */
 .box-head h2.inner-title {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   color: #333;
   margin-bottom: 20px;
-  text-align: center; /* Căn giữa tiêu đề */
+  text-align: center;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
 }
 
-/* Cải tiến cho layout */
+/* Cải tiến cho container và row */
 .container.my-3 {
   padding: 20px;
 }
@@ -28,49 +31,67 @@ body {
   gap: 20px; /* Khoảng cách giữa các cột */
 }
 
-.col-4 {
-  flex: 1 1 calc(33.33% - 20px); /* Chia đều ba cột */
-  box-sizing: border-box;
+.col-12 {
+  width: 100%; /* Cột chiếm hết chiều rộng */
+  margin-bottom: 20px;
 }
 
+/* Cải tiến cho cột sản phẩm */
+.col-4.mb-3 {
+  flex: 1 1 calc(33.33% - 20px);
+  box-sizing: border-box;
+  margin-bottom: 20px; /* Khoảng cách giữa các sản phẩm */
+}
+
+/* Cải tiến cho sản phẩm */
 .product-item {
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-item:hover {
-  transform: translateY(-5px); /* Hiệu ứng đẩy lên khi hover */
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
 /* Cải tiến cho ảnh sản phẩm */
 .inner-image img {
   width: 100%;
-  height: 300px; /* Giảm chiều cao của ảnh xuống 300px để ảnh lớn hơn gấp đôi */
-  object-fit: cover; /* Đảm bảo ảnh không bị méo */
-  border-bottom: 2px solid #ddd; /* Đường viền giữa ảnh và thông tin sản phẩm */
+  height: 250px;
+  object-fit: cover;
+  border-bottom: 2px solid #ddd;
   border-radius: 8px 8px 0 0;
 }
 
-/* Cải tiến nội dung sản phẩm */
+/* Cải tiến cho thông tin sản phẩm */
 .inner-content {
   padding: 15px;
   text-align: center;
 }
 
 .inner-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   color: #333;
   margin-bottom: 10px;
 }
 
+.inner-title a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.inner-title a:hover {
+  color: #007bff; /* Màu khi hover */
+}
+
 .inner-price-new {
   color: #e74c3c;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   margin-bottom: 5px;
 }
@@ -84,22 +105,47 @@ body {
 
 .inner-discount {
   color: #2ecc71;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   margin-top: 5px;
 }
 
-/* Cải tiến layout cho các phần tử trong màn hình nhỏ */
+/* Cải tiến cho layout với màn hình nhỏ */
 @media screen and (max-width: 768px) {
-  .col-4 {
+  .col-4.mb-3 {
     flex: 1 1 100%; /* Đảm bảo các sản phẩm chiếm hết chiều rộng trên màn hình nhỏ */
   }
 
   .product-item {
-    margin-bottom: 20px; /* Khoảng cách giữa các sản phẩm */
+    margin-bottom: 20px;
   }
+
+  /* Tăng kích thước ảnh cho màn hình nhỏ */
+  /* Cải tiến cho ảnh sản phẩm */
+/* Cải tiến cho ảnh sản phẩm */
+.inner-image img {
+  width: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều rộng của phần tử */
+  height: auto; /* Giữ tỷ lệ ảnh và chiều cao tự động */
+  object-fit: contain; /* Đảm bảo ảnh hiển thị đầy đủ mà không bị cắt hoặc méo */
+  border-bottom: 2px solid #ddd;
+  border-radius: 8px 8px 0 0;
 }
 
 
 
+  .inner-title {
+    font-size: 18px; /* Giảm kích thước font cho tiêu đề sản phẩm trên màn hình nhỏ */
+  }
 
+  .inner-price-new {
+    font-size: 16px; /* Điều chỉnh kích thước giá mới trên màn hình nhỏ */
+  }
+
+  .inner-price-old {
+    font-size: 14px; /* Điều chỉnh kích thước giá cũ trên màn hình nhỏ */
+  }
+
+  .inner-discount {
+    font-size: 14px; /* Điều chỉnh kích thước giảm giá trên màn hình nhỏ */
+  }
+}

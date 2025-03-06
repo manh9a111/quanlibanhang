@@ -43,10 +43,4 @@ block main
                 span.font-weight-bold Mô tả: 
                 span.text-secondary #{product.description}
 
-        .d-flex.justify-content-center.mt-4
-            a(class="btn btn-warning btn-lg px-4"
-            href=`${prefixAdmin}/products/edit/${product.id}`)
-                i(class="fas fa-edit mr-2") 
-                | Chỉnh sửa
-
     script(src="/admin/js/product.js")
