@@ -1,9 +1,11 @@
 const Product = require("../../models/product.model");
+const ProductCategory = require("../../models/product-category.model");
 const filterstatushelper = require("../../heplers/filterstatus");
 const searchhelper = require("../../heplers/search");
 const { on } = require("nodemon");
 const systemConfig = require("../../config/system")
 const pagination = require("../../heplers/pagination");
+const createTreeHelper = require("../../heplers/createTree")
 module.exports.index = async (req, res) => {
     const filterstatus = filterstatushelper(req.query);
     let find = {
@@ -33,7 +35,16 @@ module.exports.index = async (req, res) => {
     // objectPagination.totalPage = totalPage;
     // console.log(objectPagination.currentPage);
     // objectPagination.skip = (objectPagination.currentPage - 1) * objectPagination.limititem;
-    const products = await Product.find(find).sort({ position: "desc" }).limit(objectPagination.limititem).skip(objectPagination.skip);
+    let sort = {
+
+    };
+    if(req.query.sortKey && req.query.sortValue){
+        sort[req.query.sortKey] = req.query.sortValue;
+    }else{
+        sort.position = "desc";
+    }
+    
+    const products = await Product.find(find).sort(sort).limit(objectPagination.limititem).skip(objectPagination.skip);
     products.forEach(item => {
         item.pricenew = item.price - (item.price * (item.discountPercentage) / 100).toFixed(0);
     })
@@ -101,8 +112,16 @@ module.exports.deleteItem = async (req, res) => {
     res.redirect("back");
 }
 module.exports.create = async(req,res)=>{
+    let find = {
+        deleted : false
+    }
+    const category = await ProductCategory.find(find);
+    const newCategory = createTreeHelper.Tree(category)
+    // console.log(newRecords)
+    
     res.render('admin/page/products/create', {
-        pageTitle: "Thêm mới sản phẩm"
+        pageTitle: "Thêm mới sản phẩm",
+        category:newCategory
     });
 }
 module.exports.createPost = async(req,res)=>{
@@ -130,10 +149,16 @@ module.exports.edit = async(req,res)=>{
             _id:req.params.id
         }
         const product = await Product.findOne(find);
-        console.log(product)
+        
+        const category = await ProductCategory.find({
+            deleted : false
+        });
+        const newCategory = createTreeHelper.Tree(category)
+        
         res.render('admin/page/products/edit', {
             pageTitle: "Chỉnh sửa sản phẩm",
-            product:product
+            product:product,
+            category:newCategory
         });
     } catch (error) {
         res.redirect(`${systemConfig.prefixAdmin}/products`);
@@ -166,7 +191,7 @@ module.exports.detail = async(req,res)=>{
             _id:req.params.id
         }
         const product = await Product.findOne(find);
-        console.log(product)
+     
         res.render('admin/page/products/detail', {
             pageTitle:product.title,
             product:product

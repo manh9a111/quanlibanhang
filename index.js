@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require("path");
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
 const flash = require('express-flash');
@@ -24,6 +25,7 @@ app.use(session({
 }));
 
 app.use(flash());
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 // mongoose.connect(process.env.Mongo_url);
 app.locals.prefixAdmin = system.prefixAdmin;
 database.connect();

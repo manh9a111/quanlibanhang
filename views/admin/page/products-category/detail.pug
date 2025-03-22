@@ -1,0 +1,43 @@
+extends ../../layouts/default.pug
+
+block main
+    .container
+        if (productCategory.title)
+            h1(class="mb-4 text-primary font-weight-bold text-center") #{productCategory.title}
+
+        .row
+            .col-md-6                              
+                if (productCategory.position)
+                    div(class="mb-3") 
+                        span.font-weight-bold Vị trí: 
+                        span.text-primary.font-weight-bold #{productCategory.position}
+
+            .col-md-6
+                if (productCategory.thumbnail)
+                    div(class="mb-4 text-center")
+                        img(
+                            src=productCategory.thumbnail
+                            style="width: 180px; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);"
+                            alt="Hình ảnh sản phẩm"
+                        )
+
+                if (productCategory.status)
+                    div(class="mb-3 d-flex align-items-center") 
+                        span.font-weight-bold Trạng thái: 
+                        span.badge.badge-pill(
+                            class=(productCategory.status === "active" ? "badge-light text-dark border border-success" : "badge-warning text-dark border border-danger") 
+                            style="font-size: 1.1rem; padding: 6px 12px; margin-left: 10px;"
+                        ) #{productCategory.status === "active" ? "Hoạt động" : "Dừng hoạt động"}
+
+        if (productCategory.description)
+            div(class="mb-4 p-3 border rounded bg-light") 
+                span.font-weight-bold Mô tả: 
+                span.text-secondary !{productCategory.description}
+
+        .d-flex.justify-content-center.mt-4
+            a(class="btn btn-warning btn-lg px-4"
+            href=`${prefixAdmin}/products-category/edit/${productCategory.id}`)
+                i(class="fas fa-edit mr-2") 
+                | Chỉnh sửa
+
+    script(src="/admin/js/product-category.js")

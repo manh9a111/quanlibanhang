@@ -23,7 +23,7 @@ products.forEach(item =>{
   };
 module.exports.detail = async(req,res)=>{
 
-    console.log(req.params.slug)
+
     try {
         const find ={
             deleted : false,
@@ -31,7 +31,7 @@ module.exports.detail = async(req,res)=>{
             status:"active"
         }
         const product = await Product.findOne(find);
-        console.log(product)
+      
         res.render('client/page/products/detail', {
             pageTitle:product.title,
             product:product
