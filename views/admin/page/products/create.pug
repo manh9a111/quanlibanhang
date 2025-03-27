@@ -69,7 +69,10 @@ block main
                             value="0"
                             min="0"
                         )
-                    .mb-4
+                    div(
+                        class = "form-group"
+                        upload-image
+                        )
                         label(for="thumbnail" class="form-label fw-bold text-primary") Ảnh
                         input(
                             type="file"
@@ -77,6 +80,7 @@ block main
                             id="thumbnail"
                             name="thumbnail"
                             accept="image/*"
+                            
                             upload-image-input
                         )
                         .text-center.mt-3
